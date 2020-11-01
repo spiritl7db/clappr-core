@@ -10,7 +10,6 @@ import Browser from '../browser'
 import CoreFactory from '../core_factory'
 import Loader from '../loader'
 import ErrorMixin from '../../base/error_mixin'
-import $ from 'clappr-zepto'
 
 const baseUrl = currentScriptUrl().replace(/\/[^/]+$/, '')
 
@@ -238,7 +237,7 @@ export default class Player extends BaseObject {
       allowUserInteraction: Browser.isMobile,
       playback: playbackDefaultOptions
     }
-    this._options = $.extend(defaultOptions, options)
+    this._options = { ...defaultOptions, ...options }
     this.options.sources = this._normalizeSources(options)
     if (!this.options.chromeless) {
       // "allowUserInteraction" cannot be false if not in chromeless mode.
