@@ -237,7 +237,9 @@ export default class Player extends BaseObject {
       allowUserInteraction: Browser.isMobile,
       playback: playbackDefaultOptions
     }
+    const mergedPlaybackOptions = { ...defaultOptions.playback, ...options.playback }
     this._options = { ...defaultOptions, ...options }
+    this._options.playback = mergedPlaybackOptions
     this.options.sources = this._normalizeSources(options)
     if (!this.options.chromeless) {
       // "allowUserInteraction" cannot be false if not in chromeless mode.
